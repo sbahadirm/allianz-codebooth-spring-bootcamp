@@ -3,6 +3,7 @@ package com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.entity;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.enums.EnumAccAccountType;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.enums.EnumAccCurrencyType;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.entity.CusCustomer;
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.gen.entity.BaseEntity;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.gen.enums.EnumGenStatus;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +22,7 @@ import java.util.Date;
 @Table(name = "ACC_ACCOUNT")
 @Getter
 @Setter
-public class AccAccount {
+public class AccAccount extends BaseEntity {
 
     @Id
     @SequenceGenerator(name = "AccAccount", sequenceName = "ACC_ACCOUNT_ID_SEQ")

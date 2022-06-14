@@ -1,5 +1,6 @@
 package com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.entity;
 
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.gen.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,7 @@ import java.io.Serializable;
 @Table(name = "CUS_CUSTOMER")
 @Getter
 @Setter
-public class CusCustomer implements Serializable {
+public class CusCustomer extends BaseEntity {
 
     @Id
     @SequenceGenerator(name = "CusCustomer", sequenceName = "CUS_CUSTOMER_ID_SEQ")
