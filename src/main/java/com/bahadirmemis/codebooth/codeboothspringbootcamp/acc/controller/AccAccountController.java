@@ -2,6 +2,8 @@ package com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.controller;
 
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.dto.AccAccountDto;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.dto.AccAccountSaveRequestDto;
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.dto.AccMoneyActivityRequestDto;
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.dto.AccMoneyTransferRequestDto;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.service.AccAccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -47,4 +49,20 @@ public class AccAccountController {
 
         accAccountService.cancel(id);
     }
+
+    @PostMapping("/money-transfer")
+    public void transferMoney(@RequestBody AccMoneyTransferRequestDto accMoneyTransferRequestDto){
+        accAccountService.transferMoney(accMoneyTransferRequestDto);
+    }
+
+    @PostMapping("/withdraw")
+    public void withdraw(@RequestBody AccMoneyActivityRequestDto accMoneyActivityRequestDto){
+        accAccountService.withdraw(accMoneyActivityRequestDto);
+    }
+
+    @PostMapping("/deposit")
+    public void deposit(@RequestBody AccMoneyActivityRequestDto accMoneyActivityRequestDto){
+        accAccountService.deposit(accMoneyActivityRequestDto);
+    }
+
 }
