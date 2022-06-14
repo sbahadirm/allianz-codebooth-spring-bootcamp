@@ -1,10 +1,9 @@
 package com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.controller;
 
-import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.dto.AccAccountDto;
-import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.dto.AccAccountSaveRequestDto;
-import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.dto.AccMoneyActivityRequestDto;
-import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.dto.AccMoneyTransferRequestDto;
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.dto.*;
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.service.AccAccountActivityService;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.service.AccAccountService;
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.service.AccMoneyTransferService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +19,8 @@ import java.util.List;
 public class AccAccountController {
 
     private final AccAccountService accAccountService;
+    private final AccAccountActivityService accAccountActivityService;
+    private final AccMoneyTransferService accMoneyTransferService;
 
     @GetMapping
     public List<AccAccountDto> findAll(){
@@ -51,18 +52,21 @@ public class AccAccountController {
     }
 
     @PostMapping("/money-transfer")
-    public void transferMoney(@RequestBody AccMoneyTransferRequestDto accMoneyTransferRequestDto){
-        accAccountService.transferMoney(accMoneyTransferRequestDto);
+    public AccMoneyTransferDto transferMoney(@RequestBody AccMoneyTransferRequestDto accMoneyTransferRequestDto){
+        AccMoneyTransferDto accMoneyTransferDto = accMoneyTransferService.transferMoney(accMoneyTransferRequestDto);
+
+        return accMoneyTransferDto;
     }
 
     @PostMapping("/withdraw")
     public void withdraw(@RequestBody AccMoneyActivityRequestDto accMoneyActivityRequestDto){
-        accAccountService.withdraw(accMoneyActivityRequestDto);
+        AccMoneyActivityDto accMoneyActivityDto = accAccountActivityService.withdraw(accMoneyActivityRequestDto);
     }
 
     @PostMapping("/deposit")
     public void deposit(@RequestBody AccMoneyActivityRequestDto accMoneyActivityRequestDto){
-        accAccountService.deposit(accMoneyActivityRequestDto);
+        AccMoneyActivityDto accMoneyActivityDto = accAccountActivityService.deposit(accMoneyActivityRequestDto);
+
     }
 
 }

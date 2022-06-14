@@ -1,5 +1,6 @@
 package com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.converter;
 
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.dto.AccMoneyTransferDto;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.dto.AccMoneyTransferRequestDto;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.entity.AccMoneyTransfer;
 import org.mapstruct.Mapper;
@@ -16,4 +17,6 @@ public interface AccMoneyTransferMapper {
     AccMoneyTransferMapper INSTANCE = Mappers.getMapper(AccMoneyTransferMapper.class);
 
     AccMoneyTransfer convertToAccMoneyTransfer(AccMoneyTransferRequestDto accMoneyTransferRequestDto);
+
+    AccMoneyTransferDto convertToAccMoneyTransferDto(AccMoneyTransfer accMoneyTransfer);
 }
