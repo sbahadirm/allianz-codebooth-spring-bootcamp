@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -63,5 +64,14 @@ public class AccAccountService {
         String randomNumberAsString = StringUtil.getRandomNumberAsString(24);
 
         return "TR" + randomNumberAsString;
+    }
+
+    public void cancel(Long id) {
+
+        AccAccount accAccount = accAccountEntityService.findByIdWithControl(id);
+
+        accAccount.setStatus(EnumGenStatus.PASSIVE);
+        accAccount.setCancelDate(new Date());
+        accAccountEntityService.save(accAccount);
     }
 }
