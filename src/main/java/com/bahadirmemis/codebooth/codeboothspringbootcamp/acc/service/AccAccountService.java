@@ -11,6 +11,7 @@ import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.enums.EnumAccActiv
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.service.entityservice.AccAccountActivityEntityService;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.service.entityservice.AccAccountEntityService;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.service.entityservice.AccMoneyTransferEntityService;
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.util.AccAccountUtil;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.gen.enums.EnumGenStatus;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.gen.util.StringUtil;
 import lombok.RequiredArgsConstructor;
@@ -53,7 +54,7 @@ public class AccAccountService {
 
     public AccAccountDto save(AccAccountSaveRequestDto accAccountSaveRequestDto) {
 
-        String ibanNo = getIbanNo();
+        String ibanNo = AccAccountUtil.getIbanNo();
 
         AccAccount accAccount = accAccountMapperAbstract.convertToAccAccount(accAccountSaveRequestDto);
         accAccount.setIbanNo(ibanNo);
@@ -64,13 +65,6 @@ public class AccAccountService {
         AccAccountDto accAccountDto = AccAccountMapper.INSTANCE.convertToAccAccountDto(accAccount);
 
         return accAccountDto;
-    }
-
-    private String getIbanNo() {
-
-        String randomNumberAsString = StringUtil.getRandomNumberAsString(24);
-
-        return "TR" + randomNumberAsString;
     }
 
     public void cancel(Long id) {
