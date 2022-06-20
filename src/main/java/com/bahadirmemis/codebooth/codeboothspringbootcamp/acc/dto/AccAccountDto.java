@@ -3,6 +3,7 @@ package com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.dto;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.enums.EnumAccAccountType;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.enums.EnumAccCurrencyType;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.gen.enums.EnumGenStatus;
+import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -13,6 +14,7 @@ import java.util.Date;
  * @since 1.0.0
  */
 @Data
+@Builder
 public class AccAccountDto {
 
     private Long id;
