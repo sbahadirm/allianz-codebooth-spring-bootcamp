@@ -4,7 +4,9 @@ import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.dto.CusCustomerDto
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.dto.CusCustomerSaveRequestDto;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.dto.CusCustomerUpdateRequestDto;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.service.CusCustomerService;
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.gen.response.GenRestResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,33 +23,35 @@ public class CusCustomerController {
     private final CusCustomerService cusCustomerService;
 
     @GetMapping
-    public List<CusCustomerDto> findAll(){
+    public ResponseEntity findAll(){
         List<CusCustomerDto> cusCustomerDtoList = cusCustomerService.findAll();
-        return cusCustomerDtoList;
+        return ResponseEntity.ok(GenRestResponse.of(cusCustomerDtoList));
     }
 
     @GetMapping("/{id}")
-    public CusCustomerDto findById(@PathVariable Long id){
+    public ResponseEntity findById(@PathVariable Long id){
         CusCustomerDto cusCustomerDto = cusCustomerService.findById(id);
-        return cusCustomerDto;
+        return ResponseEntity.ok(GenRestResponse.of(cusCustomerDto));
     }
 
     @PostMapping
-    public CusCustomerDto save(@RequestBody CusCustomerSaveRequestDto cusCustomerSaveRequestDto){
+    public ResponseEntity save(@RequestBody CusCustomerSaveRequestDto cusCustomerSaveRequestDto){
         CusCustomerDto cusCustomerDto = cusCustomerService.save(cusCustomerSaveRequestDto);
-        return cusCustomerDto;
+        return ResponseEntity.ok(GenRestResponse.of(cusCustomerDto));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
+    public ResponseEntity delete(@PathVariable Long id){
         cusCustomerService.delete(id);
+
+        return ResponseEntity.ok(GenRestResponse.empty());
     }
 
     @PutMapping
-    public CusCustomerDto update(@RequestBody CusCustomerUpdateRequestDto cusCustomerUpdateRequestDto){
+    public ResponseEntity update(@RequestBody CusCustomerUpdateRequestDto cusCustomerUpdateRequestDto){
 
         CusCustomerDto cusCustomerDto = cusCustomerService.update(cusCustomerUpdateRequestDto);
 
-        return cusCustomerDto;
+        return ResponseEntity.ok(GenRestResponse.of(cusCustomerDto));
     }
 }

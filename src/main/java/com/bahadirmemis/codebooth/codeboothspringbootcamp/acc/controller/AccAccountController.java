@@ -4,7 +4,9 @@ import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.dto.*;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.service.AccAccountActivityService;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.service.AccAccountService;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.service.AccMoneyTransferService;
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.gen.response.GenRestResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,50 +25,55 @@ public class AccAccountController {
     private final AccMoneyTransferService accMoneyTransferService;
 
     @GetMapping
-    public List<AccAccountDto> findAll(){
+    public ResponseEntity findAll(){
         List<AccAccountDto> accAccountDtoList = accAccountService.findAll();
 
-        return accAccountDtoList;
+        return ResponseEntity.ok(GenRestResponse.of(accAccountDtoList));
     }
 
     @GetMapping("/{id}")
-    public AccAccountDto findById(@PathVariable Long id){
+    public ResponseEntity findById(@PathVariable Long id){
 
         AccAccountDto accAccountDto = accAccountService.findById(id);
 
-        return accAccountDto;
+        return ResponseEntity.ok(GenRestResponse.of(accAccountDto));
     }
 
     @PostMapping
-    public AccAccountDto save(@RequestBody AccAccountSaveRequestDto accAccountSaveRequestDto){
+    public ResponseEntity save(@RequestBody AccAccountSaveRequestDto accAccountSaveRequestDto){
 
         AccAccountDto accAccountDto = accAccountService.save(accAccountSaveRequestDto);
 
-        return accAccountDto;
+        return ResponseEntity.ok(GenRestResponse.of(accAccountDto));
     }
 
     @PatchMapping("/cancel/{id}")
-    public void cancel(@PathVariable Long id){
+    public ResponseEntity cancel(@PathVariable Long id){
 
         accAccountService.cancel(id);
+
+        return ResponseEntity.ok(GenRestResponse.empty());
     }
 
     @PostMapping("/money-transfer")
-    public AccMoneyTransferDto transferMoney(@RequestBody AccMoneyTransferRequestDto accMoneyTransferRequestDto){
+    public ResponseEntity transferMoney(@RequestBody AccMoneyTransferRequestDto accMoneyTransferRequestDto){
         AccMoneyTransferDto accMoneyTransferDto = accMoneyTransferService.transferMoney(accMoneyTransferRequestDto);
 
-        return accMoneyTransferDto;
+        return ResponseEntity.ok(GenRestResponse.of(accMoneyTransferDto));
     }
 
     @PostMapping("/withdraw")
-    public void withdraw(@RequestBody AccMoneyActivityRequestDto accMoneyActivityRequestDto){
+    public ResponseEntity withdraw(@RequestBody AccMoneyActivityRequestDto accMoneyActivityRequestDto){
         AccMoneyActivityDto accMoneyActivityDto = accAccountActivityService.withdraw(accMoneyActivityRequestDto);
+
+        return ResponseEntity.ok(GenRestResponse.of(accMoneyActivityDto));
     }
 
     @PostMapping("/deposit")
-    public void deposit(@RequestBody AccMoneyActivityRequestDto accMoneyActivityRequestDto){
+    public ResponseEntity deposit(@RequestBody AccMoneyActivityRequestDto accMoneyActivityRequestDto){
         AccMoneyActivityDto accMoneyActivityDto = accAccountActivityService.deposit(accMoneyActivityRequestDto);
 
+        return ResponseEntity.ok(GenRestResponse.of(accMoneyActivityDto));
     }
 
 }
