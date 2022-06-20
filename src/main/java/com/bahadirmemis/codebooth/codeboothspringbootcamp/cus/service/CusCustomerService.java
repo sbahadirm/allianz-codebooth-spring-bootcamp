@@ -5,7 +5,9 @@ import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.dto.CusCustomerDto
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.dto.CusCustomerSaveRequestDto;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.dto.CusCustomerUpdateRequestDto;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.entity.CusCustomer;
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.enums.CusErrorMessage;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.service.entityservice.CusCustomerEntityService;
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.gen.exceptions.GenBusinessException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -76,7 +78,7 @@ public class CusCustomerService {
 
         boolean isExist = cusCustomerEntityService.isExist(cusCustomerUpdateRequestDto.getId());
         if (!isExist){
-            throw new RuntimeException("CUSTOMER DOES NOT EXIST");
+            throw new GenBusinessException(CusErrorMessage.CUSTOMER_DOES_NOT_EXIST);
         }
 
         CusCustomer cusCustomer = CusCustomerMapper.INSTANCE.convertToCusCustomer(cusCustomerUpdateRequestDto);
