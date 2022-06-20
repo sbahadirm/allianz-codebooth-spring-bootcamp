@@ -170,15 +170,15 @@ public class TransactionalController {
     public void ts18(){
         transactionalService.saveT2TButError();
     }
-//
-//    /**
-//     *
-//     * 19: transaction açıp kapatma maliyeti
-//     */
-//    @PostMapping("/ts19")
-//    public void ts19(){
-//        transactionalService.doSomethingWithNewTransaction();
-//    }
+
+    /**
+     *
+     * 19: transaction açıp kapatma maliyeti
+     */
+    @PostMapping("/ts19")
+    public long ts19(){
+        return transactionalService.doSomethingWithNewTransaction();
+    }
 //
 //    /**
 //     * 20: never - öncesinde transaction yok

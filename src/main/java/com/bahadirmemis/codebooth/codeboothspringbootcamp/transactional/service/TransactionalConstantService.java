@@ -38,4 +38,20 @@ public class TransactionalConstantService {
 
         return cusCustomer;
     }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public CusCustomer findByIdRN(Long id){
+
+        CusCustomer cusCustomer = idAndCustomerMap.get(id);
+
+        if (cusCustomer != null){
+            return cusCustomer;
+        }
+
+        cusCustomer = cusCustomerEntityService.findByIdWithControl(id);
+
+        idAndCustomerMap.put(id, cusCustomer);
+
+        return cusCustomer;
+    }
 }

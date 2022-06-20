@@ -187,4 +187,19 @@ public class TransactionalService {
 
         System.out.println("End");
     }
+
+    public long doSomethingWithNewTransaction() {
+
+        Date startDate = new Date();
+
+        for (int i = 0; i < 9999; i++){
+            CusCustomer cusCustomer = transactionalConstantService.findByIdRN(1L);
+        }
+
+        Date endDate = new Date();
+
+        long diff = endDate.getTime() - startDate.getTime();
+
+        return diff;
+    }
 }
