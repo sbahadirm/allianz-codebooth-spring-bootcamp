@@ -23,6 +23,7 @@ public class TransactionalService {
     private final NonTransactionalService nonTransactionalService;
     private final TransactionalService2 transactionalService2;
     private final TransactionalConstantService transactionalConstantService;
+    private final NonTransactionalConstantService nonTransactionalConstantService;
 
     public void save() {
 
@@ -201,5 +202,15 @@ public class TransactionalService {
         long diff = endDate.getTime() - startDate.getTime();
 
         return diff;
+    }
+
+    public void saveT2Never() {
+
+        CusCustomer customer = TransactionUtil.getCustomer("ts21");
+        cusCustomerEntityService.save(customer);
+
+        nonTransactionalConstantService.saveNever();
+
+        System.out.println("end");
     }
 }

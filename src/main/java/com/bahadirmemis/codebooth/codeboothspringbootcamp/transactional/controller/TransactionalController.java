@@ -188,11 +188,11 @@ public class TransactionalController {
         nonTransactionalService.saveNon2Never();
     }
 
-//    /**
-//     * 21: never - öncesinde transaction var
-//     */
-//    @PostMapping("/ts21")
-//    public void ts21(){
-//        transactionalService.saveT2Never();
-//    }
+    /**
+     * 21: never - öncesinde transaction var
+     */
+    @PostMapping("/ts21")
+    public void ts21(){
+        transactionalService.saveT2Never();
+    }
 }
