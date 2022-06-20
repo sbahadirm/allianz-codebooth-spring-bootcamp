@@ -74,13 +74,13 @@ public class TransactionalController {
         System.out.println("end ts6");
     }
 
-//    /**
-//     * 7: non transactional olan bir yerde kayıt işlemi sırasında hata
-//     */
-//    @PostMapping("/ts7")
-//    public void ts7(){
-//        nonTransactionalService.saveButError();
-//    }
+    /**
+     * 7: non transactional olan bir yerde kayıt işlemi sırasında hata
+     */
+    @PostMapping("/ts7")
+    public void ts7(){
+        nonTransactionalService.saveButError();
+    }
 //
 //    /**
 //     * 8: aynı class içinde requires new kullanımı.
