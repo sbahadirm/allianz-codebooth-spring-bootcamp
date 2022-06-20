@@ -113,14 +113,14 @@ public class TransactionalController {
     public void ts11(){
         nonTransactionalService.saveN2M();
     }
-//
-//    /**
-//     * 12: mandatory transaction var
-//     */
-//    @PostMapping("/ts12")
-//    public void ts12(){
-//        transactionalService.saveT2M();
-//    }
+
+    /**
+     * 12: mandatory transaction var
+     */
+    @PostMapping("/ts12")
+    public void ts12(){
+        transactionalService.saveT2M();
+    }
 //
 //    /**
 //     * 13: supports transaction var

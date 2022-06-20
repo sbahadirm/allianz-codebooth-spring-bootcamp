@@ -40,4 +40,14 @@ public class TransactionalService2 {
 
         System.out.println("end ->" + i);
     }
+
+    @Transactional(propagation = Propagation.MANDATORY)
+    public void saveMandatory() {
+
+        CusCustomer customer = TransactionUtil.getCustomer("ts12-M");
+        cusCustomerEntityService.save(customer);
+
+        System.out.println("End");
+
+    }
 }

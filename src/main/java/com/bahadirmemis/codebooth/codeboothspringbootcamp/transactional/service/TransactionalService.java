@@ -123,4 +123,15 @@ public class TransactionalService {
         System.out.println("End");
 
     }
+
+    public void saveT2M() {
+
+        CusCustomer customer = TransactionUtil.getCustomer("ts12");
+        cusCustomerEntityService.save(customer);
+
+        transactionalService2.saveMandatory();
+
+        System.out.println("End");
+
+    }
 }
