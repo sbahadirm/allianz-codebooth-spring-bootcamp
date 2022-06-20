@@ -27,4 +27,17 @@ public class TransactionalService2 {
 
         System.out.println("end");
     }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void saveRN(int i) {
+
+        CusCustomer customer = TransactionUtil.getCustomer("ts10-" + i);
+        cusCustomerEntityService.save(customer);
+
+        if (i == 7){
+            throw new RuntimeException("Error");
+        }
+
+        System.out.println("end ->" + i);
+    }
 }
