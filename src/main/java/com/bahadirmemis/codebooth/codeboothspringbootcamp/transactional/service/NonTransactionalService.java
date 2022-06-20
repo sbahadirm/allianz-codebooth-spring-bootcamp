@@ -18,6 +18,7 @@ public class NonTransactionalService {
 
     private final CusCustomerEntityService cusCustomerEntityService;
     private TransactionalService transactionalService;
+    private final TransactionalService2 transactionalService2;
 
     @Autowired
     public void setTransactionalService(@Lazy TransactionalService transactionalService) {
@@ -70,5 +71,15 @@ public class NonTransactionalService {
 
         System.out.println("End");
 
+    }
+
+    public void saveN2S() {
+
+        CusCustomer customer = TransactionUtil.getCustomer("ts14");
+        cusCustomerEntityService.save(customer);
+
+        transactionalService2.saveSports();
+
+        System.out.println("End");
     }
 }
