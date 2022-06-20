@@ -145,15 +145,15 @@ public class TransactionalController {
     public void ts15(){
         transactionalService.doSomething();
     }
-//
-//
-//    /**
-//     * 16: nested (desteklenmez)
-//     */
-//    @PostMapping("/ts16")
-//    public void ts16(){
-//        transactionalService.saveNested();
-//    }
+
+
+    /**
+     * 16: nested (desteklenmez)
+     */
+    @PostMapping("/ts16")
+    public void ts16(){
+        transactionalService.saveNested();
+    }
 //
 //    /**
 //     * 17: toplu işlemlerinizi transactional olmayan yerde yapın.en hızlı senaryo

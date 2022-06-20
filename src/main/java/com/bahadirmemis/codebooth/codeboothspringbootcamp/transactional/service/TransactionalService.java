@@ -154,4 +154,11 @@ public class TransactionalService {
             CusCustomer cusCustomer = transactionalConstantService.findById(1L);
         }
     }
+
+    public void saveNested() {
+
+        transactionalService2.saveNested();
+
+        System.out.println("End");
+    }
 }

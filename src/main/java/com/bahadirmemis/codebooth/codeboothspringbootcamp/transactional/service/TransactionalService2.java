@@ -58,4 +58,12 @@ public class TransactionalService2 {
 
         System.out.println("End");
     }
+
+    @Transactional(propagation = Propagation.NESTED)
+    public void saveNested() {
+        CusCustomer customer = TransactionUtil.getCustomer("ts16-N");
+        cusCustomerEntityService.save(customer);
+
+        System.out.println("End");
+    }
 }
