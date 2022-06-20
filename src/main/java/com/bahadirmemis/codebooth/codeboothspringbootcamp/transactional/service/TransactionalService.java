@@ -37,4 +37,14 @@ public class TransactionalService {
 
         System.out.println("end");
     }
+
+    public void saveT2T() {
+
+        CusCustomer customer = TransactionUtil.getCustomer("ts5-1");
+        cusCustomerEntityService.save(customer);
+
+        save();
+
+        System.out.println("end");
+    }
 }

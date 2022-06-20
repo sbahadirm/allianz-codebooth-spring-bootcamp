@@ -57,14 +57,14 @@ public class TransactionalController {
         System.out.println("end");
     }
 
-//    /**
-//     * 5: ikisi de transactional olan bir yerde kayıt işlemi
-//     */
-//    @PostMapping("/ts5")
-//    public void ts5(){
-//        transactionalService.saveT2T();
-//    }
-//
+    /**
+     * 5: ikisi de transactional olan bir yerde kayıt işlemi
+     */
+    @PostMapping("/ts5")
+    public void ts5(){
+        transactionalService.saveT2T();
+    }
+
 //    /**
 //     * 6: sadece transactional olan bir yerde kayıt işlemi sırasında hata
 //     */
