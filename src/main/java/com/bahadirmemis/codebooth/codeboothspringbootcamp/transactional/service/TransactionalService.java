@@ -19,6 +19,7 @@ public class TransactionalService {
 
     private final CusCustomerEntityService cusCustomerEntityService;
     private final NonTransactionalService nonTransactionalService;
+    private final TransactionalService2 transactionalService2;
 
     public void save() {
 
@@ -82,6 +83,16 @@ public class TransactionalService {
 
         CusCustomer customer = TransactionUtil.getCustomer("ts8-2");
         cusCustomerEntityService.save(customer);
+
+        System.out.println("end");
+    }
+
+    public void saveT2RNWithDifferentBean() {
+
+        CusCustomer customer = TransactionUtil.getCustomer("ts9-1");
+        cusCustomerEntityService.save(customer);
+
+        transactionalService2.saveRN();
 
         System.out.println("end");
     }

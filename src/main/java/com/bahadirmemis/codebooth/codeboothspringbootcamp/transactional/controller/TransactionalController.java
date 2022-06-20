@@ -90,13 +90,13 @@ public class TransactionalController {
         transactionalService.saveT2RN();
     }
 
-//    /**
-//     * 9: requires new i farklı classa taşıma.
-//     */
-//    @PostMapping("/ts9")
-//    public void ts9(){
-//        transactionalService.saveT2RNWithDifferentBean();
-//    }
+    /**
+     * 9: requires new i farklı classa taşıma.
+     */
+    @PostMapping("/ts9")
+    public void ts9(){
+        transactionalService.saveT2RNWithDifferentBean();
+    }
 //
 //    /**
 //     * 10: requires new ile hata almayanları commitleme.
