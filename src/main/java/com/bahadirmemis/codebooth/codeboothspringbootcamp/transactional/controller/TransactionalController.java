@@ -105,14 +105,14 @@ public class TransactionalController {
     public void ts10(){
         transactionalService.saveT2RNButError();
     }
-//
-//    /**
-//     * 11: mandatory transaction yok
-//     */
-//    @PostMapping("/ts11")
-//    public void ts11(){
-//        nonTransactionalService.saveN2M();
-//    }
+
+    /**
+     * 11: mandatory transaction yok
+     */
+    @PostMapping("/ts11")
+    public void ts11(){
+        nonTransactionalService.saveN2M();
+    }
 //
 //    /**
 //     * 12: mandatory transaction var

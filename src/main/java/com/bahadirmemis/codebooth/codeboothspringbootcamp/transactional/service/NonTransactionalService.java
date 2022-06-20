@@ -60,4 +60,15 @@ public class NonTransactionalService {
     private void throwException() {
         throw new RuntimeException("Error");
     }
+
+    public void saveN2M() {
+
+        CusCustomer customer = TransactionUtil.getCustomer("ts11-1");
+        cusCustomerEntityService.save(customer);
+
+        transactionalService.saveMandatory();
+
+        System.out.println("End");
+
+    }
 }
