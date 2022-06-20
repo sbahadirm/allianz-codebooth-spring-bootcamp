@@ -36,17 +36,17 @@ public class TransactionalController {
 
         System.out.println("end");
     }
-//
-//    /**
-//     * 3: transactional olan yerden olmayan yere geçme
-//     */
-//    @PostMapping("/ts3")
-//    public void ts3(){
-//        transactionalService.saveT2N();
-//
-//        System.out.println("end");
-//    }
-//
+
+    /**
+     * 3: transactional olan yerden olmayan yere geçme
+     */
+    @PostMapping("/ts3")
+    public void ts3(){
+        transactionalService.saveT2N();
+
+        System.out.println("end");
+    }
+
 //    /**
 //     * 4: transactional olmayan yerden olan yere geçme
 //     */
