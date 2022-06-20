@@ -138,13 +138,13 @@ public class TransactionalController {
         nonTransactionalService.saveN2S();
     }
 
-//    /**
-//     * 15: not_suppoted (hızlı)
-//     */
-//    @PostMapping("/ts15")
-//    public void ts15(){
-//        transactionalService.doSomething();
-//    }
+    /**
+     * 15: not_suppoted (hızlı)
+     */
+    @PostMapping("/ts15")
+    public void ts15(){
+        transactionalService.doSomething();
+    }
 //
 //
 //    /**
