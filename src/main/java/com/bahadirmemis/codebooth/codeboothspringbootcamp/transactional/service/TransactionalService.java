@@ -47,4 +47,22 @@ public class TransactionalService {
 
         System.out.println("end");
     }
+
+    public void saveButError() {
+
+        CusCustomer customer = TransactionUtil.getCustomer("ts6-1");
+        cusCustomerEntityService.save(customer);
+
+//        try {
+            throwException();
+//        } catch (Exception e){
+//            e.printStackTrace();
+//        }
+
+        System.out.println("End");
+    }
+
+    private void throwException() {
+        throw new RuntimeException("Error");
+    }
 }
