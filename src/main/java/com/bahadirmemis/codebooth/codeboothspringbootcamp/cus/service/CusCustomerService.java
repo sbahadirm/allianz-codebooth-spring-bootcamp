@@ -7,6 +7,7 @@ import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.dto.CusCustomerUpd
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.entity.CusCustomer;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.enums.CusErrorMessage;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.service.entityservice.CusCustomerEntityService;
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.gen.enums.GenErrorMessage;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.gen.exceptions.GenBusinessException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,10 @@ public class CusCustomerService {
     }
 
     public CusCustomerDto save(CusCustomerSaveRequestDto cusCustomerSaveRequestDto) {
+
+        if (cusCustomerSaveRequestDto == null){
+            throw new GenBusinessException(GenErrorMessage.PARAMETER_CANNOT_BE_NULL);
+        }
 
         CusCustomer cusCustomer = CusCustomerMapper.INSTANCE.convertToCusCustomer(cusCustomerSaveRequestDto);
 
