@@ -100,4 +100,14 @@ public class NonTransactionalService {
 
         return diff;
     }
+
+    public void saveNon2Never() {
+
+        CusCustomer customer = TransactionUtil.getCustomer("ts20");
+        cusCustomerEntityService.save(customer);
+
+        nonTransactionalConstantService.saveNever();
+
+        System.out.println("end");
+    }
 }

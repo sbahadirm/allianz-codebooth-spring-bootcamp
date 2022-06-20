@@ -2,6 +2,7 @@ package com.bahadirmemis.codebooth.codeboothspringbootcamp.transactional.service
 
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.entity.CusCustomer;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.service.entityservice.CusCustomerEntityService;
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.transactional.util.TransactionUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -35,5 +36,14 @@ public class NonTransactionalConstantService {
         idAndCustomerMap.put(id, cusCustomer);
 
         return cusCustomer;
+    }
+
+    @Transactional(propagation = Propagation.NEVER)
+    public void saveNever() {
+
+        CusCustomer customer = TransactionUtil.getCustomer("ts20");
+        cusCustomerEntityService.save(customer);
+
+        System.out.println("end");
     }
 }

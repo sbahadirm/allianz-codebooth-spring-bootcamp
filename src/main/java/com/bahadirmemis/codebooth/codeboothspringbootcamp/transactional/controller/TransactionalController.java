@@ -179,15 +179,15 @@ public class TransactionalController {
     public long ts19(){
         return transactionalService.doSomethingWithNewTransaction();
     }
-//
-//    /**
-//     * 20: never - öncesinde transaction yok
-//     */
-//    @PostMapping("/ts20")
-//    public void ts20(){
-//        nonTransactionalService.saveNon2Never();
-//    }
-//
+
+    /**
+     * 20: never - öncesinde transaction yok
+     */
+    @PostMapping("/ts20")
+    public void ts20(){
+        nonTransactionalService.saveNon2Never();
+    }
+
 //    /**
 //     * 21: never - öncesinde transaction var
 //     */
