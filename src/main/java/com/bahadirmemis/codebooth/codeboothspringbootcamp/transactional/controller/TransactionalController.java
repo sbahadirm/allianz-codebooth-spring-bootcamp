@@ -163,13 +163,13 @@ public class TransactionalController {
         return nonTransactionalService.doSomething();
     }
 
-//    /**
-//     * 18: required ile toplu kayıtta hata aldırma.
-//     */
-//    @PostMapping("/ts18")
-//    public void ts18(){
-//        transactionalService.saveT2TButError();
-//    }
+    /**
+     * 18: required ile toplu kayıtta hata aldırma.
+     */
+    @PostMapping("/ts18")
+    public void ts18(){
+        transactionalService.saveT2TButError();
+    }
 //
 //    /**
 //     *

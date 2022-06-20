@@ -171,4 +171,20 @@ public class TransactionalService {
 
         System.out.println("End");
     }
+
+    public void saveT2TButError() {
+
+        CusCustomer customer = TransactionUtil.getCustomer("ts18");
+        cusCustomerEntityService.save(customer);
+
+        for (int i = 0; i < 10; i++){
+            try {
+                transactionalService2.save(i);
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        System.out.println("End");
+    }
 }
