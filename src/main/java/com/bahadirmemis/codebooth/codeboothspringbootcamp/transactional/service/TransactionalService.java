@@ -5,6 +5,7 @@ import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.service.entityserv
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.transactional.util.TransactionUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -64,5 +65,24 @@ public class TransactionalService {
 
     private void throwException() {
         throw new RuntimeException("Error");
+    }
+
+    public void saveT2RN() {
+
+        CusCustomer customer = TransactionUtil.getCustomer("ts8-1");
+        cusCustomerEntityService.save(customer);
+
+        saveRN();
+
+        System.out.println("end");
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void saveRN() {
+
+        CusCustomer customer = TransactionUtil.getCustomer("ts8-2");
+        cusCustomerEntityService.save(customer);
+
+        System.out.println("end");
     }
 }
