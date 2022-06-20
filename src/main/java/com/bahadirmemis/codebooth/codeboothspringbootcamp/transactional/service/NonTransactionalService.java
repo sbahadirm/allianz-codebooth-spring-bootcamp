@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * @author Bahadır Memiş
  * @since 1.0.0
@@ -19,6 +21,7 @@ public class NonTransactionalService {
     private final CusCustomerEntityService cusCustomerEntityService;
     private TransactionalService transactionalService;
     private final TransactionalService2 transactionalService2;
+    private final NonTransactionalConstantService nonTransactionalConstantService;
 
     @Autowired
     public void setTransactionalService(@Lazy TransactionalService transactionalService) {
@@ -81,5 +84,20 @@ public class NonTransactionalService {
         transactionalService2.saveSports();
 
         System.out.println("End");
+    }
+
+    public long doSomething() {
+
+        Date startDate = new Date();
+
+        for (int i = 0; i < 99999; i++){
+            CusCustomer cusCustomer = nonTransactionalConstantService.findById(1L);
+        }
+
+        Date endDate = new Date();
+
+        long diff = endDate.getTime() - startDate.getTime();
+
+        return diff;
     }
 }

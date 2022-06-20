@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 /**
  * @author Bahadır Memiş
  * @since 1.0.0
@@ -148,11 +150,19 @@ public class TransactionalService {
     }
 
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
-    public void doSomething() {
+    public long doSomething() {
 
-        for (int i = 0; i < 9999; i++){
+        Date startDate = new Date();
+
+        for (int i = 0; i < 99999; i++){
             CusCustomer cusCustomer = transactionalConstantService.findById(1L);
         }
+
+        Date endDate = new Date();
+
+        long diff = endDate.getTime() - startDate.getTime();
+
+        return diff;
     }
 
     public void saveNested() {

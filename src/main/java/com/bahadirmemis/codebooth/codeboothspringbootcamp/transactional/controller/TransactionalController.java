@@ -142,8 +142,8 @@ public class TransactionalController {
      * 15: not_suppoted (hızlı)
      */
     @PostMapping("/ts15")
-    public void ts15(){
-        transactionalService.doSomething();
+    public long ts15(){
+        return transactionalService.doSomething();
     }
 
 
@@ -154,15 +154,15 @@ public class TransactionalController {
     public void ts16(){
         transactionalService.saveNested();
     }
-//
-//    /**
-//     * 17: toplu işlemlerinizi transactional olmayan yerde yapın.en hızlı senaryo
-//     */
-//    @PostMapping("/ts17")
-//    public void ts17(){
-//        nonTransactionalService.doSomething();
-//    }
-//
+
+    /**
+     * 17: toplu işlemlerinizi transactional olmayan yerde yapın.en hızlı senaryo
+     */
+    @PostMapping("/ts17")
+    public long ts17(){
+        return nonTransactionalService.doSomething();
+    }
+
 //    /**
 //     * 18: required ile toplu kayıtta hata aldırma.
 //     */
