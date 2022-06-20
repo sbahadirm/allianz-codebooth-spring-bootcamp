@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -35,7 +36,7 @@ public class CusCustomerController {
     }
 
     @PostMapping
-    public ResponseEntity save(@RequestBody CusCustomerSaveRequestDto cusCustomerSaveRequestDto){
+    public ResponseEntity save(@RequestBody @Valid CusCustomerSaveRequestDto cusCustomerSaveRequestDto){
         CusCustomerDto cusCustomerDto = cusCustomerService.save(cusCustomerSaveRequestDto);
         return ResponseEntity.ok(GenRestResponse.of(cusCustomerDto));
     }
