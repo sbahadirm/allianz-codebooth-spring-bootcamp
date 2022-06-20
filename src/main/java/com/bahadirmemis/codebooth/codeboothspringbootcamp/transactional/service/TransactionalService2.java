@@ -50,4 +50,12 @@ public class TransactionalService2 {
         System.out.println("End");
 
     }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void saveSports() {
+        CusCustomer customer = TransactionUtil.getCustomer("ts13-S");
+        cusCustomerEntityService.save(customer);
+
+        System.out.println("End");
+    }
 }

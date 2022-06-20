@@ -121,14 +121,14 @@ public class TransactionalController {
     public void ts12(){
         transactionalService.saveT2M();
     }
-//
-//    /**
-//     * 13: supports transaction var
-//     */
-//    @PostMapping("/ts13")
-//    public void ts13(){
-//        transactionalService.saveT2S();
-//    }
+
+    /**
+     * 13: supports transaction var
+     */
+    @PostMapping("/ts13")
+    public void ts13(){
+        transactionalService.saveT2S();
+    }
 //
 //    /**
 //     * 14: supports transaction yok
