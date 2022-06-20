@@ -4,6 +4,9 @@ import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.enums.EnumAccAccou
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.acc.enums.EnumAccCurrencyType;
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
 /**
  * @author Bahadır Memiş
  * @since 1.0.0
@@ -11,7 +14,10 @@ import lombok.Data;
 @Data
 public class AccAccountSaveRequestDto {
 
+    @NotNull
+    @Positive
     private Long cusCustomerId;
+
     private EnumAccCurrencyType currencyType;
     private EnumAccAccountType accountType;
 }
