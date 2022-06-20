@@ -27,15 +27,15 @@ public class TransactionalController {
         nonTransactionalService.save();
     }
 
-//    /**
-//     * 2: transactional olan yerde kayıt işlemi
-//     */
-//    @PostMapping("/ts2")
-//    public void ts2(){
-//        transactionalService.save();
-//
-//        System.out.println("end");
-//    }
+    /**
+     * 2: transactional olan yerde kayıt işlemi
+     */
+    @PostMapping("/ts2")
+    public void ts2(){
+        transactionalService.save();
+
+        System.out.println("end");
+    }
 //
 //    /**
 //     * 3: transactional olan yerden olmayan yere geçme
