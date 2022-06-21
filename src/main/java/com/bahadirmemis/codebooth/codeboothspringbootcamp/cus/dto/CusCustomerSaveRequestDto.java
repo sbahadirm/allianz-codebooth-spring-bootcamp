@@ -24,6 +24,6 @@ public class CusCustomerSaveRequestDto implements Serializable {
     @Positive
     private Long identityNo;
 
-    @Min(8)
+    @Size(min = 8)
     private String password;
 }
