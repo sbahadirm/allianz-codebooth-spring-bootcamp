@@ -1,5 +1,6 @@
 package com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.controller;
 
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.BaseTest;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.CodeboothSpringBootcampApplication;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.gen.response.GenRestResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,8 +21,11 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.io.UnsupportedEncodingException;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -30,10 +34,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-class CusCustomerControllerTest {
+class CusCustomerControllerTest extends BaseTest {
+
+    private static final String BASE_PATH = "/api/v1/customers";
 
     private MockMvc mockMvc;
-    private ObjectMapper objectMapper;
 
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -47,25 +52,45 @@ class CusCustomerControllerTest {
     @Test
     void findAll() throws Exception {
 
-        MvcResult mvcResult = mockMvc.perform(
-                get("/api/v1/customers").content("").contentType(MediaType.APPLICATION_JSON)
+        MvcResult result = mockMvc.perform(
+                get(BASE_PATH).content("").contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
 
-        GenRestResponse genRestResponse = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), GenRestResponse.class);
-
-        boolean isSuccess = genRestResponse.isSuccess();
+        boolean isSuccess = isSuccess(result);
 
         assertTrue(isSuccess);
     }
 
     @Test
-    void findById() {
+    void findById() throws Exception {
 
+        MvcResult result = mockMvc.perform(
+                get(BASE_PATH + "/1").content("1").contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+
+        boolean isSuccess = isSuccess(result);
+
+        assertTrue(isSuccess);
 
     }
 
     @Test
-    void save() {
+    void save() throws Exception {
+
+        String body = "{\n" +
+                "  \"name\": \"john\",\n" +
+                "  \"surname\": \"grant\",\n" +
+                "  \"identityNo\": 10000000000,\n" +
+                "  \"password\": \"xxxyyyzzz\"\n" +
+                "}";
+
+        MvcResult result = mockMvc.perform(
+                post(BASE_PATH).content(body).contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+
+        boolean isSuccess = isSuccess(result);
+
+        assertTrue(isSuccess);
     }
 
     @Test
