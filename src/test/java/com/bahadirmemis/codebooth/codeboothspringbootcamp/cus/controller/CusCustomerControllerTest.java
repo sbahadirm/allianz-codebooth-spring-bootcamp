@@ -54,7 +54,7 @@ class CusCustomerControllerTest extends BaseTest {
     }
 
     @Test
-    void findAll() throws Exception {
+    void shouldFindAll() throws Exception {
 
         MvcResult result = mockMvc.perform(
                 get(BASE_PATH).content("").contentType(MediaType.APPLICATION_JSON)
@@ -66,7 +66,7 @@ class CusCustomerControllerTest extends BaseTest {
     }
 
     @Test
-    void findById() throws Exception {
+    void shouldFindById() throws Exception {
 
         MvcResult result = mockMvc.perform(
                 get(BASE_PATH + "/101").content("101").contentType(MediaType.APPLICATION_JSON)
@@ -79,7 +79,7 @@ class CusCustomerControllerTest extends BaseTest {
     }
 
     @Test
-    void save() throws Exception {
+    void shouldSave() throws Exception {
 
         String body = "{\n" +
                 "  \"name\": \"john\",\n" +
@@ -98,7 +98,7 @@ class CusCustomerControllerTest extends BaseTest {
     }
 
     @Test
-    void delete() throws Exception {
+    void shouldDelete() throws Exception {
 
         MvcResult result = mockMvc.perform(
                 MockMvcRequestBuilders.delete(BASE_PATH + "/102").content("").contentType(MediaType.APPLICATION_JSON)
@@ -110,7 +110,19 @@ class CusCustomerControllerTest extends BaseTest {
     }
 
     @Test
-    void update() throws Exception {
+    void shouldNotDeleteWhenIdDoesNotExist() throws Exception {
+
+        MvcResult result = mockMvc.perform(
+                MockMvcRequestBuilders.delete(BASE_PATH + "/9999").content("").contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isInternalServerError()).andReturn();
+
+        boolean isSuccess = isSuccess(result);
+
+        assertFalse(isSuccess);
+    }
+
+    @Test
+    void shouldUpdate() throws Exception {
 
         CusCustomerUpdateRequestDto cusCustomerUpdateRequestDto = CusCustomerUpdateRequestDto.builder()
                 .id(103L)
