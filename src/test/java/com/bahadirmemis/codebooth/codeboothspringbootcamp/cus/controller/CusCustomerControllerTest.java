@@ -94,7 +94,15 @@ class CusCustomerControllerTest extends BaseTest {
     }
 
     @Test
-    void delete() {
+    void delete() throws Exception {
+
+        MvcResult result = mockMvc.perform(
+                MockMvcRequestBuilders.delete(BASE_PATH + "/1102").content("").contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+
+        boolean isSuccess = isSuccess(result);
+
+        assertTrue(isSuccess);
     }
 
     @Test
