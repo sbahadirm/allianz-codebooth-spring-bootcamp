@@ -1,0 +1,4 @@
+INSERT INTO public.cus_customer(id, create_date, created_by, update_date, updated_by, identity_no, name, password, surname) VALUES (100, null, null, null, null, 12345678901, 'bahadir', '1231231234', 'memis');
+INSERT INTO public.cus_customer(id, create_date, created_by, update_date, updated_by, identity_no, name, password, surname) VALUES (101, null, null, null, null, 12345678901, 'bahadir', '1231231234', 'memis');
+INSERT INTO public.cus_customer(id, create_date, created_by, update_date, updated_by, identity_no, name, password, surname) VALUES (102, null, null, null, null, 12345678901, 'bahadir', '1231231234', 'memis');
+INSERT INTO public.cus_customer(id, create_date, created_by, update_date, updated_by, identity_no, name, password, surname) VALUES (103, null, null, null, null, 12345678901, 'bahadir', '1231231234', 'memis');

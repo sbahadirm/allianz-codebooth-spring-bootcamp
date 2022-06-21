@@ -69,7 +69,7 @@ class CusCustomerControllerTest extends BaseTest {
     void findById() throws Exception {
 
         MvcResult result = mockMvc.perform(
-                get(BASE_PATH + "/1").content("1").contentType(MediaType.APPLICATION_JSON)
+                get(BASE_PATH + "/101").content("101").contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
 
         boolean isSuccess = isSuccess(result);
@@ -101,7 +101,7 @@ class CusCustomerControllerTest extends BaseTest {
     void delete() throws Exception {
 
         MvcResult result = mockMvc.perform(
-                MockMvcRequestBuilders.delete(BASE_PATH + "/1102").content("").contentType(MediaType.APPLICATION_JSON)
+                MockMvcRequestBuilders.delete(BASE_PATH + "/102").content("").contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk()).andReturn();
 
         boolean isSuccess = isSuccess(result);
@@ -113,7 +113,7 @@ class CusCustomerControllerTest extends BaseTest {
     void update() throws Exception {
 
         CusCustomerUpdateRequestDto cusCustomerUpdateRequestDto = CusCustomerUpdateRequestDto.builder()
-                .id(1L)
+                .id(103L)
                 .name("Bahadır")
                 .surname("Memiş")
                 .identityNo(12345678901L)
