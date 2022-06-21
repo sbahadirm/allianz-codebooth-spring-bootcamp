@@ -2,7 +2,9 @@ package com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.controller;
 
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.BaseTest;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.CodeboothSpringBootcampApplication;
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.dto.CusCustomerUpdateRequestDto;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.gen.response.GenRestResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,8 +26,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.io.UnsupportedEncodingException;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -106,6 +107,24 @@ class CusCustomerControllerTest extends BaseTest {
     }
 
     @Test
-    void update() {
+    void update() throws Exception {
+
+        CusCustomerUpdateRequestDto cusCustomerUpdateRequestDto = CusCustomerUpdateRequestDto.builder()
+                .id(1L)
+                .name("Bahadır")
+                .surname("Memiş")
+                .identityNo(12345678901L)
+                .password("1231231234")
+                .build();
+
+        String body = objectMapper.writeValueAsString(cusCustomerUpdateRequestDto);
+
+        MvcResult result = mockMvc.perform(
+                put(BASE_PATH).content(body).contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk()).andReturn();
+
+        boolean isSuccess = isSuccess(result);
+
+        assertTrue(isSuccess);
     }
 }
