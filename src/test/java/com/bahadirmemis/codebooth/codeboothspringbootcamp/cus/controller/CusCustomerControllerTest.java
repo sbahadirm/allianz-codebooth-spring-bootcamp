@@ -2,6 +2,7 @@ package com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.controller;
 
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.BaseTest;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.CodeboothSpringBootcampApplication;
+import com.bahadirmemis.codebooth.codeboothspringbootcamp.config.H2TestProfileJPAConfig;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.dto.CusCustomerUpdateRequestDto;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.gen.response.GenRestResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
@@ -34,7 +36,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @since 1.0.0
  */
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest
+@SpringBootTest(classes = {CodeboothSpringBootcampApplication.class, H2TestProfileJPAConfig.class})
+@ActiveProfiles("test")
 class CusCustomerControllerTest extends BaseTest {
 
     private static final String BASE_PATH = "/api/v1/customers";
