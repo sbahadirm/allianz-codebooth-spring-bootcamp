@@ -10,6 +10,7 @@ import com.bahadirmemis.codebooth.codeboothspringbootcamp.cus.service.entityserv
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.gen.enums.GenErrorMessage;
 import com.bahadirmemis.codebooth.codeboothspringbootcamp.gen.exceptions.GenBusinessException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,7 @@ import java.util.Optional;
 public class CusCustomerService {
 
     private final CusCustomerEntityService cusCustomerEntityService;
+    private final PasswordEncoder passwordEncoder;
 
     public List<CusCustomerDto> findAll() {
 
@@ -67,6 +69,9 @@ public class CusCustomerService {
 
         CusCustomer cusCustomer = CusCustomerMapper.INSTANCE.convertToCusCustomer(cusCustomerSaveRequestDto);
 
+        String encodedPassword = passwordEncoder.encode(cusCustomer.getPassword());
+        cusCustomer.setPassword(encodedPassword);
+
         cusCustomer = cusCustomerEntityService.save(cusCustomer);
 
         CusCustomerDto cusCustomerDto = CusCustomerMapper.INSTANCE.convertToCusCustomerDto(cusCustomer);
@@ -87,6 +92,9 @@ public class CusCustomerService {
         }
 
         CusCustomer cusCustomer = CusCustomerMapper.INSTANCE.convertToCusCustomer(cusCustomerUpdateRequestDto);
+
+        String encodedPassword = passwordEncoder.encode(cusCustomer.getPassword());
+        cusCustomer.setPassword(encodedPassword);
 
         cusCustomer = cusCustomerEntityService.save(cusCustomer);
 
